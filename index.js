@@ -11,6 +11,7 @@ const
 var app = express();
 app.set('port', process.env.PORT || 3000);
 app.set('view engine', 'ejs');
+app.use(bodyParser.json({ verify: verifyRequestSignature }));
 app.use(express.static('public'));
 
 const CHANNEL_ID = (process.env.CHANNEL_ID) ?
@@ -33,6 +34,10 @@ if (!(CHANNEL_ID && CHANNEL_SECRET && CHANNEL_TOKEN)) {
 app.post('/webhook', function(req, res) {
   res.sendStatus(200);
 });
+
+function verifyRequestSignature(req, res, buf) {
+  let signature = req.headers["x-line-signature"];
+}
 
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
