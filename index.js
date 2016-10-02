@@ -32,11 +32,39 @@ if (!(CHANNEL_ID && CHANNEL_SECRET && CHANNEL_TOKEN)) {
 }
 
 app.post('/webhook', function(req, res) {
+  if (req.body && req.body.events && req.body && req.body.events.length > 0) {
+    let replyToken = req.body.events[0]["replyToken"];
+    let replySameMessage = req.body.events[0]["message"].text;
+    let message = {
+      replyToken: replyToken,
+      messages: [
+        {
+          type: 'text',
+          text: replySameMessage
+        }
+      ]
+    }
+    callReplyAPI(message)
+  }
   res.sendStatus(200);
 });
 
 function verifyRequestSignature(req, res, buf) {
   let signature = req.headers["x-line-signature"];
+}
+
+function callReplyAPI(message) {
+  request({
+    method: 'POST',
+    uri: 'https://api.line.me/v2/bot/message/reply',
+    headers: {
+      'Content-type': '	application/json',
+      'Authorization': 'Bearer ' + CHANNEL_TOKEN
+    },
+    json: message
+  }, function (error, response, body) {
+    // TODO with response
+  })
 }
 
 app.listen(app.get('port'), function() {
