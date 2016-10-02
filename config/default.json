@@ -1,4 +1,5 @@
 {
     "channelId": "",
-    "channelSecret": ""
+    "channelSecret": "",
+    "channelAccessToken": ""
 }
