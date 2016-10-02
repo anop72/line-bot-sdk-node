@@ -30,7 +30,7 @@ if (!(CHANNEL_ID && CHANNEL_SECRET && CHANNEL_TOKEN)) {
   process.exit(1);
 }
 
-app.get('/webhook', function(req, res) {
+app.post('/webhook', function(req, res) {
   res.sendStatus(200);
 });
 
