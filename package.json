@@ -1,0 +1,31 @@
+{
+  "name": "line-bot-sdk-node",
+  "version": "1.0.0",
+  "description": "line messaging api with node",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "lint": "jshint --exclude node_modules .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/anop72/line-bot-sdk-node.git"
+  },
+  "keywords": [
+    "line",
+    "bot",
+    "sdk",
+    "node",
+    "messaging",
+    "api"
+  ],
+  "author": "anop72",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "ejs": "^2.4.2",
+    "express": "^4.13.4",
+    "request": "^2.72.0"
+  }
+}
